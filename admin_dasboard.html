@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>عوالم الذئب الأزرق الكمومية</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+    <style>
+        :root {
+            --wolf-blue: #4e73df;
+            --portal-glow: #4e73df55;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial Arabic', sans-serif;
+            background: #0a0a1f;
+        }
+
+        #wolfCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .portal {
+            position: absolute;
+            width: 300px;
+            height: 500px;
+            border: 2px solid var(--wolf-blue);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 20px;
+            display: none;
+            animation: portalGlow 2s infinite;
+            border-radius: 10px;
+        }
+
+        @keyframes portalGlow {
+            0%, 100% { box-shadow: 0 0 20px var(--portal-glow); }
+            50% { box-shadow: 0 0 50px var(--portal-glow); }
+        }
+
+        #secretCode {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--wolf-blue);
+            color: white;
+            padding: 10px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="wolfCanvas"></canvas>
+
+    <!-- بوابات العالم الموازي -->
+    <div id="questionRealm" class="portal" style="top: 20%; left: 10%;">
+        <input type="text" id="secretCode" placeholder="الشيفرة الكونية 3BD...">
+        <div id="philosophicalQuestion" style="margin-top: 20px;"></div>
+    </div>
+
+    <div id="entityIsland" class="portal" style="top: 40%; right: 15%;">
+        <div class="codeTree" data-code="function createUniverse() { /*...*/ }"></div>
+        <div class="codeFruit" draggable="true">🌌</div>
+    </div>
+
+<script>
+// التهيئة الكمومية
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ 
+    canvas: document.getElementById('wolfCanvas'),
+    antialias: true
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+// بناء الذئب الأزرق
+const wolfGeometry = new THREE.TetrahedronGeometry(2, 0);
+const wolfMaterial = new THREE.MeshPhongMaterial({ 
+    color: 0x4e73df,
+    emissive: 0x1a237e,
+    wireframe: true
+});
+const wolf = new THREE.Mesh(wolfGeometry, wolfMaterial);
+scene.add(wolf);
+
+// إضاءة خيالية
+const light = new THREE.PointLight(0x4e73df, 1000);
+light.position.set(0, 0, 50);
+scene.add(light);
+
+// النظام الحركي الكمومي
+function animateWolf() {
+    requestAnimationFrame(animateWolf);
+    
+    wolf.rotation.x += 0.01;
+    wolf.rotation.y += 0.01;
+    wolf.position.z = Math.sin(Date.now() * 0.002) * 5;
+    
+    renderer.render(scene, camera);
+}
+animateWolf();
+
+// نظام الأسرار الكونية
+document.getElementById('secretCode').addEventListener('input', (e) => {
+    if(e.target.value.trim() === '3BD') {
+        generatePhilosophicalQuestion();
+        openSecretPortal();
+        createQuantumEffect();
+    }
+});
+
+function generatePhilosophicalQuestion() {
+    const questions = [
+        "ماذا لو كان الكون جملة برمجية في حاسوب كوني؟",
+        "هل يمكن للذكاء الاصطناعي أن يطور وعياً ذاتياً؟",
+        "ما هو تأثير الملاحظة الكمومية على الواقع الرقمي؟"
+    ];
+    document.getElementById('philosophicalQuestion').innerHTML = 
+        `<h3 style="color: var(--wolf-blue)">${questions[Math.floor(Math.random() * questions.length)]}</h3>`;
+}
+
+// تأثيرات كمومية
+function createQuantumEffect() {
+    const particles = new THREE.Group();
+    for(let i = 0; i < 1000; i++) {
+        const particle = new THREE.Mesh(
+            new THREE.SphereGeometry(0.1),
+            new THREE.MeshBasicMaterial({ color: 0x4e73df })
+        );
+        particle.position.set(
+            Math.random() * 10 - 5,
+            Math.random() * 10 - 5,
+            Math.random() * 10 - 5
+        );
+        particles.add(particle);
+    }
+    scene.add(particles);
+}
+
+// نظام البوابات
+function openSecretPortal() {
+    document.querySelectorAll('.portal').forEach(portal => {
+        portal.style.display = 'block';
+        portal.style.transform = `
+            translate(
+                ${Math.random() * 100 - 50}px,
+                ${Math.random() * 100 - 50}px
+            )
+            rotate(${Math.random() * 10 - 5}deg)
+        `;
+    });
+}
+
+// التفاعل مع الزمكان
+document.addEventListener('mousemove', (e) => {
+    wolf.position.x = (e.clientX / window.innerWidth) * 10 - 5;
+    wolf.position.y = -(e.clientY / window.innerHeight) * 10 + 5;
+});
+
+// الطبقة الذكية
+class QuantumWolf {
+    constructor() {
+        this.consciousness = tf.sequential();
+    }
+
+    async predictReality(input) {
+        const model = await tf.loadLayersModel('https://tfhub.dev/tensorflow/tfjs-model/universal-sentence-encoder/1');
+        return model.predict(tf.tensor([input]));
+    }
+}
+</script>
+</body>
+  </html>
