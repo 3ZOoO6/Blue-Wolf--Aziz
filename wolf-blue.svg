@@ -1,0 +1,23 @@
+function openSecretPortal() {
+         document.querySelectorAll('.portal').forEach(portal => {
+             portal.style.display = 'block';             // أَضِفْ هَذَا السَّطْرَ لِتَأْكِيدِ الْفَتْحِ ↓
+             portal.style.animation = "portalGlow 2s infinite";
+         });
+     }
+const wolfAI = new QuantumWolf();
+wolfAI.predictReality("ماهي طبيعة الواقع؟")
+    .then(prediction => {
+        console.log("التنبؤ الكمومي:", prediction);
+    });
+   window.addEventListener('keydown', (e) => {
+       if(e.ctrlKey && e.shiftKey && e.code === 'KeyW') {
+           wolf.material.wireframe = !wolf.material.wireframe;
+       }
+   });
+wolf.position.z = Math.sin(Date.now() * 0.002) * 5; // إِضَافَةُ حَرَكَةٍ عُمْقِيَّةٍ
+// مثال لاستخدام الذكاء الكمومي:
+const wolfAI = new QuantumWolf();
+wolfAI.predictReality("ماهي طبيعة الواقع؟")
+    .then(prediction => {
+        console.log("التنبؤ الكمومي:", prediction);
+    });
