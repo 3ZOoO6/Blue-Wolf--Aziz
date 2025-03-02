@@ -160,6 +160,20 @@ document.addEventListener('mousemove', (e) => {
     wolf.position.y = -(e.clientY / window.innerHeight) * 10 + 5;
 });
 
+// لتفعيل الوضع السري:
+window.addEventListener('keydown', (e) => {
+    if(e.ctrlKey && e.shiftKey && e.code === 'KeyW') {
+        wolf.material.wireframe = !wolf.material.wireframe;
+    }
+});
+
+// مثال لاستخدام الذكاء الكمومي:
+const wolfAI = new QuantumWolf();
+wolfAI.predictReality("ماهي طبيعة الواقع؟")
+    .then(prediction => {
+        console.log("التنبؤ الكمومي:", prediction);
+    });
+
 // الطبقة الذكية
 class QuantumWolf {
     constructor() {
@@ -173,4 +187,4 @@ class QuantumWolf {
 }
 </script>
 </body>
-  </html>
+</html>
